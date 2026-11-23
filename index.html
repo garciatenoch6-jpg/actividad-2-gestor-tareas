@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6558d3">
+  <meta name="description" content="Aplicación moderna para organizar tareas personales.">
+  <title>TaskFlow | Gestor de tareas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="TaskFlow, inicio">
+        <span class="brand-mark">✓</span><span>taskflow</span>
+      </a>
+      <span class="topbar-note"><span class="status-dot"></span> Tu espacio de organización</span>
+    </header>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">ORGANIZA TU DÍA</p>
+        <h1>Menos pendientes.<br><span>Más enfoque.</span></h1>
+        <p class="hero-copy">Un paso a la vez. Lleva el control de lo que importa.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-circle circle-one"></div><div class="art-circle circle-two"></div>
+        <div class="art-card"><span class="art-check">✓</span><span class="art-line"></span><span class="art-line short"></span></div>
+      </div>
+    </section>
+    <section class="summary-grid" aria-label="Resumen de tareas">
+      <article class="summary-card"><span class="summary-icon purple">▤</span><div><p>Total de tareas</p><strong id="totalCount">0</strong></div></article>
+      <article class="summary-card"><span class="summary-icon green">✓</span><div><p>Completadas</p><strong id="completedCount">0</strong></div></article>
+      <article class="summary-card"><span class="summary-icon orange">◷</span><div><p>Pendientes</p><strong id="pendingCount">0</strong></div></article>
+    </section>
+    <section class="task-panel">
+      <div class="panel-heading"><div><p class="eyebrow">TU LISTA</p><h2>Mis tareas</h2></div><span class="date-label" id="todayLabel"></span></div>
+      <form id="taskForm" class="task-form" novalidate>
+        <label class="sr-only" for="taskInput">Nombre de la tarea</label>
+        <input id="taskInput" type="text" maxlength="120" placeholder="¿Qué necesitas hacer hoy?" autocomplete="off">
+        <button class="add-button" type="submit"><span>＋</span> Agregar tarea</button>
+      </form>
+      <p id="formMessage" class="form-message" role="alert" aria-live="polite"></p>
+      <div class="list-toolbar"><span id="listCaption">Todas tus actividades</span><div class="filters" role="group" aria-label="Filtrar tareas">
+        <button type="button" class="filter-button active" data-filter="all">Todas</button>
+        <button type="button" class="filter-button" data-filter="pending">Pendientes</button>
+        <button type="button" class="filter-button" data-filter="completed">Completadas</button>
+      </div></div>
+      <ul id="taskList" class="task-list" aria-live="polite"></ul>
+      <div id="emptyState" class="empty-state"><div class="empty-icon">✦</div><h3>Tu lista está lista para empezar</h3><p>Agrega una tarea arriba y organiza tus pendientes.</p></div>
+      <footer class="panel-footer"><span><span class="save-dot"></span> Guardado automáticamente en este dispositivo</span><button type="button" id="clearCompleted" class="text-button">Limpiar completadas</button></footer>
+    </section>
+    <footer class="app-footer">Hecho para avanzar, una tarea a la vez.</footer>
+  </main>
+  <div id="editDialog" class="dialog-backdrop" hidden>
+    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+      <button type="button" id="closeDialog" class="dialog-close" aria-label="Cerrar">×</button>
+      <p class="eyebrow">ACTUALIZAR ACTIVIDAD</p><h2 id="dialogTitle">Editar tarea</h2>
+      <form id="editForm"><label for="editInput">Nombre de la tarea</label><input id="editInput" type="text" maxlength="120" required>
+        <p id="editMessage" class="form-message" role="alert"></p>
+        <div class="dialog-actions"><button type="button" id="cancelEdit" class="secondary-button">Cancelar</button><button type="submit" class="add-button">Guardar cambios</button></div>
+      </form>
+    </section>
+  </div>
+</body>
+</html>
